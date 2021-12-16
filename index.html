@@ -22,7 +22,29 @@
 <body  onload="getAllData()">
 
     <h1><center>Hiking Database</center></h1>
+    <div >
+        <div class="card-body">
+            <h5 >Add a new hill to your library</h5>
+            <div >
+                <input type="text" id="MountainName" placeholder="Mountain Name:">
+                <div></div>
+                <input type="text"  id="region" placeholder="Region :">
+            </div>
+            <div >
+                <input type="number" id="height" placeholder="Height">
+                
+                <select " type="text" name="country" id="country">
+                    <option value="" selected>Which country?</option>
+                    <option value="England"> England</option>
+                    <option value="Wales">Wales</option>
+                    <option value="Scotland">Scotland</option>
+                </select>
+            </div>
+            <button  onclick="ResetForm()" id="get">RESET</button>
+            <button  onclick="addTodo()">SUBMIT</button>
+            
 
+        </div>
 <div class="container">
     <div class="row " id="res">
     
