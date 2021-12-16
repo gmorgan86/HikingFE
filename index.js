@@ -140,3 +140,20 @@ function regionSearch() {
     }
 
 }
+
+//heightSearch
+function heightSearch() {
+    var height = document.getElementById("heightSearch").value;
+     if (height.trim() == '') {
+         alert("Please Enter Height For search");
+         getAllData();
+     } else {
+         axios
+             .get('http://localhost:8080/getByHeight/' + height, {
+                 timeout: 5000
+             })
+             .then(res => showOutput(res))
+             .catch(err => console.error(err));
+     }
+
+}
