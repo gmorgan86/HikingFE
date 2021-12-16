@@ -89,3 +89,20 @@ function showOutput(res) {
         </div>`;
     }
 }
+
+//mountainNameSearch
+function mountainNameSearch() {
+    var mountainName = document.getElementById("mountainNameSearch").value;
+    if (mountainName.trim() == '') {
+        alert("Please Enter Mountain Name For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByMountainName/' + mountainName, {
+                timeout: 5000
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
