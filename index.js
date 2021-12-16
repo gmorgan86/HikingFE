@@ -39,6 +39,28 @@ function ResetForm() {
 
 }
 
+// UPDATE/PUT REQUEST
+function updateTodo(id) {
+    var mountainName = document.getElementById("MountainName").value;
+    var region = document.getElementById("region").value;
+    var height = document.getElementById("height").value;
+    var country = document.getElementById("country").value;
+    if (mountainName.trim() == '' || region.trim() == '' || height.trim() == '' || country.trim() == '') {
+        alert("Please Insert the Data");
+    } else {
+        axios
+            .put('http://localhost:8080/replace/' + id, {
+                mountainName: mountainName,
+                region: region,
+                height: height,
+                country: country
+            })
+            .then(getAllData)
+            .catch(err => console.error(err));
+            ResetForm();
+    }
+}
+
 // DELETE REQUEST
 function removeTodo(id) {
     axios
@@ -59,6 +81,8 @@ function showOutput(res) {
                 <p class="card-text">Height :${res.data[i].height}</p>
                 <p class="card-text">Country :${res.data[i].country}</p>
                 <button  class="btn button-colour" onclick="removeTodo(${res.data[i].id})">Delete</button>
+                <button class="btn button-colour" onclick="updateTodo(${res.data[i].id})">Update</button>
+
 
                 
             </div>
