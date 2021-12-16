@@ -7,8 +7,36 @@ function getAllData() {
         .catch(err => console.error(err));
 }
 
+// CREATE/POST REQUEST
+function addTodo() {
+    var mountainName = document.getElementById("MountainName").value;
+    var region = document.getElementById("region").value;
+    var height = document.getElementById("height").value;
+    var country = document.getElementById("country").value;
+    if (mountainName.trim() == '' || region.trim() == '' || height.trim() == '' || country.trim() == '') {
+        alert("Please Insert the Data");
+    } else {
+        axios
+            .post('http://localhost:8080/create', {
+                mountainName: mountainName,
+                region: region,
+                height: height,
+                country: country
+            })
+            .then(value => getAllData())
+            .catch(err => console.error(err));
+ ResetForm();
+    }
+}
 
+//ResetForm
+function ResetForm() {
+    document.getElementById("MountainName").value = '';
+    document.getElementById("region").value = '';
+    document.getElementById("height").value = '';
+    document.getElementById("country").value = '';
 
+}
 
 function showOutput(res) {
     document.getElementById('res').innerHTML = null;
