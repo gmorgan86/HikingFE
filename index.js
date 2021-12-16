@@ -1,4 +1,3 @@
-
 // GET REQUEST
 function getAllData() {
     axios
@@ -6,6 +5,17 @@ function getAllData() {
         })
         .then(res => showOutput(res))
         .catch(err => console.error(err));
+}
+
+
+
+//ResetForm
+function ResetForm() {
+    document.getElementById("MountainName").value = '';
+    document.getElementById("region").value = '';
+    document.getElementById("height").value = '';
+    document.getElementById("country").value = '';
+
 }
 
 // CREATE/POST REQUEST
@@ -26,17 +36,8 @@ function addTodo() {
             })
             .then(value => getAllData())
             .catch(err => console.error(err));
- ResetForm();
+        ResetForm();
     }
-}
-
-//ResetForm
-function ResetForm() {
-    document.getElementById("MountainName").value = '';
-    document.getElementById("region").value = '';
-    document.getElementById("height").value = '';
-    document.getElementById("country").value = '';
-
 }
 
 // UPDATE/PUT REQUEST
@@ -57,7 +58,7 @@ function updateTodo(id) {
             })
             .then(getAllData)
             .catch(err => console.error(err));
-            ResetForm();
+        ResetForm();
     }
 }
 
@@ -69,22 +70,20 @@ function removeTodo(id) {
         .catch(err => console.error(err));
 }
 
+//ShowOutput
 function showOutput(res) {
     document.getElementById('res').innerHTML = null;
     for (let i = 0; i < res.data.length; i++) {
         console.log("Index " + i + " ==  " + res.data[i]);
-        document.getElementById('res').innerHTML += `
-        <div">
+        document.getElementById('res').innerHTML += `<div class="col-sm-4 card text-center" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Name : ${res.data[i].mountainName}</h5>
-                <p class="card-text">Region :${res.data[i].region}</p>
-                <p class="card-text">Height :${res.data[i].height}</p>
-                <p class="card-text">Country :${res.data[i].country}</p>
+                <h5 class="card-title">Mountain Name: ${res.data[i].mountainName}</h5>
+                <p class="card-text">Region: ${res.data[i].region}</p>
+                <p class="card-text">Height: ${res.data[i].height}</p>
+                <p class="card-text">Country: ${res.data[i].country}</p>
                 <button  class="btn button-colour" onclick="removeTodo(${res.data[i].id})">Delete</button>
                 <button class="btn button-colour" onclick="updateTodo(${res.data[i].id})">Update</button>
 
-
-                
             </div>
         </div>`;
     }
@@ -99,24 +98,6 @@ function mountainNameSearch() {
     } else {
         axios
             .get('http://localhost:8080/getByMountainName/' + mountainName, {
-                timeout: 5000
-            })
-            .then(res => showOutput(res))
-            .catch(err => console.error(err));
-    }
-
-}
-
-//countrySearch
-function countrySearch() {
-    var country = document.getElementById("countrySearch").value;
-    if (country.trim() == '') {
-        alert("Please Select Country For search");
-        getAllData();
-    } else {
-        axios
-            .get('http://localhost:8080/getByCountry/' + country, {
-                timeout: 5000
             })
             .then(res => showOutput(res))
             .catch(err => console.error(err));
@@ -133,7 +114,6 @@ function regionSearch() {
     } else {
         axios
             .get('http://localhost:8080/getByRegion/' + region, {
-                timeout: 5000
             })
             .then(res => showOutput(res))
             .catch(err => console.error(err));
@@ -144,16 +124,31 @@ function regionSearch() {
 //heightSearch
 function heightSearch() {
     var height = document.getElementById("heightSearch").value;
-     if (height.trim() == '') {
-         alert("Please Enter Height For search");
-         getAllData();
-     } else {
-         axios
-             .get('http://localhost:8080/getByHeight/' + height, {
-                 timeout: 5000
-             })
-             .then(res => showOutput(res))
-             .catch(err => console.error(err));
-     }
+    if (height.trim() == '') {
+        alert("Please Enter Height For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByHeight/' + height, {
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
+
+//countrySearch
+function countrySearch() {
+    var country = document.getElementById("countrySearch").value;
+    if (country.trim() == '') {
+        alert("Please Select Country For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByCountry/' + country, {
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
 
 }
