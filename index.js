@@ -89,3 +89,71 @@ function showOutput(res) {
         </div>`;
     }
 }
+
+//mountainNameSearch
+function mountainNameSearch() {
+    var mountainName = document.getElementById("mountainNameSearch").value;
+    if (mountainName.trim() == '') {
+        alert("Please Enter Mountain Name For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByMountainName/' + mountainName, {
+                timeout: 5000
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
+
+//countrySearch
+function countrySearch() {
+    var country = document.getElementById("countrySearch").value;
+    if (country.trim() == '') {
+        alert("Please Select Country For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByCountry/' + country, {
+                timeout: 5000
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
+
+//regionSearch
+function regionSearch() {
+    var region = document.getElementById("regionSearch").value;
+    if (region.trim() == '') {
+        alert("Please Enter Region For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByRegion/' + region, {
+                timeout: 5000
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
+
+//heightSearch
+function heightSearch() {
+    var height = document.getElementById("heightSearch").value;
+     if (height.trim() == '') {
+         alert("Please Enter Height For search");
+         getAllData();
+     } else {
+         axios
+             .get('http://localhost:8080/getByHeight/' + height, {
+                 timeout: 5000
+             })
+             .then(res => showOutput(res))
+             .catch(err => console.error(err));
+     }
+
+}
