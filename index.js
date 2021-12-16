@@ -88,7 +88,21 @@ function showOutput(res) {
         </div>`;
     }
 }
+//ID Search
+// function IDSearch() {
+//     var id = document.getElementById("IDSearch").value;
+//     if (id.trim() == '') {
+//         alert("Please Enter ID to search");
+//         getAllData();
+//     } else {
+//         axios
+//             .get('http://localhost:8080/get/' + id, {
+//             })
+//             .then(res => showOutput(res))
+//             .catch(err => console.error(err));
+//     }
 
+// }
 //mountainNameSearch
 function mountainNameSearch() {
     var mountainName = document.getElementById("mountainNameSearch").value;
