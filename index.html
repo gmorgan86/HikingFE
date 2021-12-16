@@ -25,7 +25,13 @@
 
     <input type="text"  id="mountainNameSearch" placeholder="Mountain Name...">
         <button type="submit"  onclick="mountainNameSearch()">Get</button>
-        <div class="col-sm-2"></div>
+        <select  type="text" id="countrySearch">
+            <option value="" selected>Which country?</option>
+            <option value="England"> England</option>
+            <option value="Wales">Wales</option>
+            <option value="Scotland">Scotland</option>
+        </select>
+        <button type="submit" onclick="countrySearch()">Get</button>
     <div >
         <div class="card-body">
             <h5 >Add a new hill to your library</h5>

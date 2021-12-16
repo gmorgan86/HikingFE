@@ -106,3 +106,20 @@ function mountainNameSearch() {
     }
 
 }
+
+//countrySearch
+function countrySearch() {
+    var country = document.getElementById("countrySearch").value;
+    if (country.trim() == '') {
+        alert("Please Select Country For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByCountry/' + country, {
+                timeout: 5000
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
