@@ -123,3 +123,20 @@ function countrySearch() {
     }
 
 }
+
+//regionSearch
+function regionSearch() {
+    var region = document.getElementById("regionSearch").value;
+    if (region.trim() == '') {
+        alert("Please Enter Region For search");
+        getAllData();
+    } else {
+        axios
+            .get('http://localhost:8080/getByRegion/' + region, {
+                timeout: 5000
+            })
+            .then(res => showOutput(res))
+            .catch(err => console.error(err));
+    }
+
+}
