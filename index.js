@@ -1,3 +1,5 @@
+"use strict";
+
 // GET REQUEST
 function getAllData() {
     axios
@@ -15,6 +17,12 @@ function ResetForm() {
     document.getElementById("region").value = '';
     document.getElementById("height").value = '';
     document.getElementById("country").value = '';
+    document.getElementById("mountainNameSearch").value = '';
+    document.getElementById("regionSearch").value = '';
+    document.getElementById("heightSearch").value = '';
+    document.getElementById("countrySearch").value = '';
+
+
 
 }
 
@@ -25,7 +33,7 @@ function addTodo() {
     var height = document.getElementById("height").value;
     var country = document.getElementById("country").value;
     if (mountainName.trim() == '' || region.trim() == '' || height.trim() == '' || country.trim() == '') {
-        alert("Please Insert the Data");
+        alert("Please insert data to create");
     } else {
         axios
             .post('http://localhost:8080/create', {
@@ -47,7 +55,7 @@ function updateTodo(id) {
     var height = document.getElementById("height").value;
     var country = document.getElementById("country").value;
     if (mountainName.trim() == '' || region.trim() == '' || height.trim() == '' || country.trim() == '') {
-        alert("Please Insert the Data");
+        alert("Please insert data update");
     } else {
         axios
             .put('http://localhost:8080/replace/' + id, {
@@ -83,7 +91,6 @@ function showOutput(res) {
                 <p class="card-text">Country: ${res.data[i].country}</p>
                 <button  class="btn button-colour" onclick="removeTodo(${res.data[i].id})">Delete</button>
                 <button class="btn button-colour" onclick="updateTodo(${res.data[i].id})">Update</button>
-
             </div>
         </div>`;
     }
@@ -101,6 +108,7 @@ function mountainNameSearch() {
             })
             .then(res => showOutput(res))
             .catch(err => console.error(err));
+            ResetForm()
     }
 
 }
@@ -117,6 +125,7 @@ function regionSearch() {
             })
             .then(res => showOutput(res))
             .catch(err => console.error(err));
+            ResetForm()
     }
 
 }
@@ -133,6 +142,7 @@ function heightSearch() {
             })
             .then(res => showOutput(res))
             .catch(err => console.error(err));
+            ResetForm()
     }
 
 }
@@ -149,6 +159,23 @@ function countrySearch() {
             })
             .then(res => showOutput(res))
             .catch(err => console.error(err));
+            ResetForm()
     }
 
 }
+
+//ID Search
+// function IDSearch() {
+//     var id = document.getElementById("IDSearch").value;
+//     if (id.trim() == '') {
+//         alert("Please Enter ID to search");
+//         getAllData();
+//     } else {
+//         axios
+//             .get('http://localhost:8080/get/' + id, {
+//             })
+//             .then(res => showOutput(res))
+//             .catch(err => console.error(err));
+//     }
+
+// }
